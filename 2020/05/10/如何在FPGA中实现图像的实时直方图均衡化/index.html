@@ -5,15 +5,25 @@
   
 
   
-  <title>Mike Rush&#39;s Blog</title>
+  <title>如何在FPGA中实现图像的实时直方图均衡化 | Mike Rush&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mike Rush&#39;s Blog">
-<meta property="og:url" content="https://mike-rush.github.io/index.html">
+  <meta name="description" content="转载不必注明出处，就说是你自己写的 如何在FPGA中实现图像的实时直方图均衡化在我们进行HSV色彩空间颜色阈值的提取时，有时候会受到光照的影响，在不同光照条件下，通过直方图均衡化能很好地削弱光照对颜色阈值筛选的影响。在低照度下，通过直方图均衡化处理后的图像也更容易看清楚其轮廓。其流程如图所示 用FPGA处理时，我们要用到FPGA的片上存储资源B-SRAM配置成的伪双端口RAM（Semi dual-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在FPGA中实现图像的实时直方图均衡化">
+<meta property="og:url" content="https://mike-rush.github.io/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/index.html">
 <meta property="og:site_name" content="Mike Rush&#39;s Blog">
+<meta property="og:description" content="转载不必注明出处，就说是你自己写的 如何在FPGA中实现图像的实时直方图均衡化在我们进行HSV色彩空间颜色阈值的提取时，有时候会受到光照的影响，在不同光照条件下，通过直方图均衡化能很好地削弱光照对颜色阈值筛选的影响。在低照度下，通过直方图均衡化处理后的图像也更容易看清楚其轮廓。其流程如图所示 用FPGA处理时，我们要用到FPGA的片上存储资源B-SRAM配置成的伪双端口RAM（Semi dual-">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mike-rush.github.io/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/images/2020051001.png">
+<meta property="og:image" content="https://mike-rush.github.io/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/images/2020051002.png">
+<meta property="og:image" content="https://mike-rush.github.io/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/images/2020051003.png">
+<meta property="og:image" content="https://mike-rush.github.io/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/images/2020051004.png">
+<meta property="og:image" content="https://mike-rush.github.io/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/images/2020051005.png">
+<meta property="article:published_time" content="2020-05-10T08:22:47.000Z">
+<meta property="article:modified_time" content="2020-05-10T08:34:15.776Z">
 <meta property="article:author" content="Mike Rush">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mike-rush.github.io/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/images/2020051001.png">
   
     <link rel="alternate" href="/atom.xml" title="Mike Rush&#39;s Blog" type="application/atom+xml">
   
@@ -62,9 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-如何在FPGA中实现图像的实时直方图均衡化" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-如何在FPGA中实现图像的实时直方图均衡化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/" class="article-date">
   <time datetime="2020-05-10T08:22:47.000Z" itemprop="datePublished">2020-05-10</time>
@@ -77,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/10/%E5%A6%82%E4%BD%95%E5%9C%A8FPGA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E7%9A%84%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/">如何在FPGA中实现图像的实时直方图均衡化</a>
+    <h1 class="article-title" itemprop="name">
+      如何在FPGA中实现图像的实时直方图均衡化
     </h1>
   
 
@@ -100,97 +108,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Otto-NodeMCU" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/10/Otto-NodeMCU/" class="article-date">
-  <time datetime="2020-05-10T07:55:16.000Z" itemprop="datePublished">2020-05-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/10/Otto-NodeMCU/">Otto NodeMCU</a>
-    </h1>
+    <a href="/2020/05/10/Otto-NodeMCU/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Otto NodeMCU</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="【PCB项目】Otto-NodeMCU"><a href="#【PCB项目】Otto-NodeMCU" class="headerlink" title="【PCB项目】Otto NodeMCU"></a>【PCB项目】Otto NodeMCU</h2><p><font color=red>【Idea】</font>Otto是一个开源的小巧舞蹈机器人，官方版本采用Arduino Nano+HC-05蓝牙方案进行控制，成本较高，而ESP 12F是成本极低的WiFi SoC模组，固考虑在原有外设不变的前提下将主控芯片换成ESP8266，为了方便烧写，仍然采用开发板的方式，用NodeMCU单板替换原有Arduino Nano+HC-05的组合，将Otto的控制程序移植到NodeMCU上，上位机方案采用Blynk的方式，在这里推广一下本人的Blynk服务器:<font color=blue>dddd1d23cloud.xyz:9443</font><br><font color=red>【Improment】</font>未来将退出该机器人的集体控制方案，打造Otto低成本机器人舞团，敬请期待！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mike-rush.github.io/2020/05/10/Otto-NodeMCU/" data-id="cka0rid750001for2a8beg6y5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/10/hello-world/" class="article-date">
-  <time datetime="2020-05-10T07:09:02.883Z" itemprop="datePublished">2020-05-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/10/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mike-rush.github.io/2020/05/10/hello-world/" data-id="cka0qqgoa0000jsr2d9vgecr8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
