@@ -15,7 +15,7 @@
 <meta property="og:description" content="转载不必注明出处，就说是你自己写的">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-13T03:46:14.000Z">
-<meta property="article:modified_time" content="2020-05-13T03:54:01.033Z">
+<meta property="article:modified_time" content="2020-05-13T03:57:47.636Z">
 <meta property="article:author" content="Mike Rush">
 <meta name="twitter:card" content="summary">
   
@@ -175,48 +175,27 @@
 <p>2.算法设计。设计和优化芯片钟所使用的算法。这一阶段一般使用高级编程语言（如C/C++），利用算法级建模和仿真工具（如MATLAB，SPW）进行浮点和定点的仿真，进而对算法进行评估和优化。</p>
 <p>3.构架设计。根据设计的功能需求和算法分析的结果，设计芯片的构架，并对不同的方案进行比较，选择性能价格最优的方案。这一阶段可以使用SystemC语言对芯片构架进行模拟和分析。</p>
 <p>4.RTL设计（代码输入）。使用HDL语言完成对设计实体的RTL级描述。这一阶段使用VHDL和Verilog HDL语言的输入工具编写代码。</p>
-<ol start="5">
-<li>RTL验证（功能仿真）。使用仿真工具或其他RTL代码分析工具，验证RTL代码的质量和性能。</li>
-</ol>
+<p>5.RTL验证（功能仿真）。使用仿真工具或其他RTL代码分析工具，验证RTL代码的质量和性能。</p>
 <p>6.综合。从RTL代码生成描述实际电路的门级网表文件。</p>
 <p>7.门级验证（综合后仿真）。对综合产生的门级网表进行验证。这一阶段通常会使用仿真、静态时序分析和形式验证等工具。</p>
-<ol start="8">
-<li>布局布线。后端设计对综合产生的门级网表进行布局规划（Floorplanning）、布局（Placement）、布线（Routing），生成生产用的版图。</li>
-</ol>
+<p>8.布局布线。后端设计对综合产生的门级网表进行布局规划（Floorplanning）、布局（Placement）、布线（Routing），生成生产用的版图。</p>
 <p>9.电路参数提取确定芯片中互连线的寄生参数，从而获得门级的延时信息。</p>
 <p>10.版图后验证。根据后端设计后取得的新的延时信息，再次验证设计是否能够实现所有的功能和性能指标。</p>
 <p>11.芯片生产。生产在特定的芯片工艺线上制造出芯片。</p>
-<ol start="12">
-<li>芯片测试。对制造好的芯片进行测试，检测生产中产生的缺陷和问题。</li>
-</ol>
+<p>12.芯片测试。对制造好的芯片进行测试，检测生产中产生的缺陷和问题。</p>
 <p>数字IC后端设计流程</p>
-<ol>
-<li>数据准备。对于 Cadance的 SE而言后端设计所需的数据主要有是Foundry厂提供的标准单元、宏单元和I/O Pad的库文件,它包括物理库、时序库及网表库,分别以.lef、.tlf和.v的形式给出。前端的芯片设计经过综合后生成的门级网表,具有时序约束和时钟定义的脚本文件和由此产生的.gcf约束文件以及定义电源Pad的DEF（Design Exchange Format）文件。(对synopsys 的Astro 而言, 经过综合后生成的门级网表,时序约束文件 SDC 是一样的,Pad的定义文件–tdf , .tf 文件 –technology file, Foundry厂提供的标准单元、宏单元和I/O Pad的库文件就与FRAM, CELL view, LM view 形式给出(Milkway 参考库 and DB, LIB file)</li>
-</ol>
+<p>1.数据准备。对于 Cadance的 SE而言后端设计所需的数据主要有是Foundry厂提供的标准单元、宏单元和I/O Pad的库文件,它包括物理库、时序库及网表库,分别以.lef、.tlf和.v的形式给出。前端的芯片设计经过综合后生成的门级网表,具有时序约束和时钟定义的脚本文件和由此产生的.gcf约束文件以及定义电源Pad的DEF（Design Exchange Format）文件。(对synopsys 的Astro 而言, 经过综合后生成的门级网表,时序约束文件 SDC 是一样的,Pad的定义文件–tdf , .tf 文件 –technology file, Foundry厂提供的标准单元、宏单元和I/O Pad的库文件就与FRAM, CELL view, LM view 形式给出(Milkway 参考库 and DB, LIB file)</p>
 <p>2.布局规划。主要是标准单元、I/O Pad和宏单元的布局。I/O Pad预先给出了位置,而宏单元则根据时序要求进行摆放,标准单元则是给出了一定的区域由工具自动摆放。布局规划后,芯片的大小,Core的面积,Row的形式、电源及地线的Ring和Strip都确定下来了。如果必要在自动放置标准单元和宏单元之后, 你可以先做一次PNA(power network analysis）–IR drop and EM .</p>
-<ol start="3">
-<li><p>Placement -自动放置标准单元。布局规划后,宏单元、I/O Pad的位置和放置标准单元的区域都已确定,这些信息SE（Silicon Ensemble）会通过DEF文件传递给PC(Physical Compiler),PC根据由综合给出的.DB文件获得网表和时序约束信息进行自动放置标准单元,同时进行时序检查和单元放置优化。如果你用的是PC +Astro那你可用write_milkway, read_milkway传递数据。</p>
-</li>
-<li><p>时钟树生成(CTS Clock tree synthesis)。芯片中的时钟网络要驱动电路中所有的时序单元,所以时钟源端门单元带载很多,其负载延时很大并且不平衡,需要插入缓冲器减小负载和平衡延时。时钟网络及其上的缓冲器构成了时钟树。一般要反复几次才可以做出一个比较理想的时钟树。</p>
-</li>
-<li><p>STA静态时序分析和后仿真。时钟树插入后,每个单元的位置都确定下来了,工具可以提出Global Route形式的连线寄生参数,此时对延时参数的提取就比较准确了。SE把.V和.SDF文件传递给PrimeTime做静态时序分析。确认没有时序违规后,将这来两个文件传递给前端人员做后仿真。对Astro 而言,在detail routing 之后, 用starRC XT参数提取,生成的E.V和.SDF文件传递给PrimeTime做静态时序分析,那将会更准确。</p>
-</li>
-<li><p>ECO(Engineering Change Order)。针对静态时序分析和后仿真中出现的问题,对电路和单元布局进行小范围的改动.</p>
-</li>
-<li><p>filler的插入(pad fliier, cell filler)。Filler指的是标准单元库和I/O Pad库中定义的与逻辑无关的填充物,用来填充标准单元和标准单元之间,I/O Pad和I/O Pad之间的间隙,它主要是把扩散层连接起来,满足DRC规则和设计需要。</p>
-</li>
-</ol>
+<p>3.Placement -自动放置标准单元。布局规划后,宏单元、I/O Pad的位置和放置标准单元的区域都已确定,这些信息SE（Silicon Ensemble）会通过DEF文件传递给PC(Physical Compiler),PC根据由综合给出的.DB文件获得网表和时序约束信息进行自动放置标准单元,同时进行时序检查和单元放置优化。如果你用的是PC +Astro那你可用write_milkway, read_milkway传递数据。<br>4.时钟树生成(CTS Clock tree synthesis)。芯片中的时钟网络要驱动电路中所有的时序单元,所以时钟源端门单元带载很多,其负载延时很大并且不平衡,需要插入缓冲器减小负载和平衡延时。时钟网络及其上的缓冲器构成了时钟树。一般要反复几次才可以做出一个比较理想的时钟树。</p>
+<p>5.STA静态时序分析和后仿真。时钟树插入后,每个单元的位置都确定下来了,工具可以提出Global Route形式的连线寄生参数,此时对延时参数的提取就比较准确了。SE把.V和.SDF文件传递给PrimeTime做静态时序分析。确认没有时序违规后,将这来两个文件传递给前端人员做后仿真。对Astro 而言,在detail routing 之后, 用starRC XT参数提取,生成的E.V和.SDF文件传递给PrimeTime做静态时序分析,那将会更准确。</p>
+<p>6.ECO(Engineering Change Order)。针对静态时序分析和后仿真中出现的问题,对电路和单元布局进行小范围的改动.</p>
+<p>7.filler的插入(pad fliier, cell filler)。Filler指的是标准单元库和I/O Pad库中定义的与逻辑无关的填充物,用来填充标准单元和标准单元之间,I/O Pad和I/O Pad之间的间隙,它主要是把扩散层连接起来,满足DRC规则和设计需要。</p>
 <p>8.布线(Routing)。Global route– Track assign –Detail routing—Routing optimization布线是指在满足工艺规则和布线层数限制、线宽、线间距限制和各线网可靠绝缘的电性能约束的条件下,根据电路的连接关系将各单元和I/O Pad用互连线连接起来,这些是在时序驱动(Timing driven ) 的条件下进行的,保证关键时序路径上的连线长度能够最小。–Timing report clear</p>
-<ol start="9">
-<li><p>Dummy Metal的增加。Foundry厂都有对金属密度的规定,使其金属密度不要低于一定的值,以防在芯片制造过程中的刻蚀阶段对连线的金属层过度刻蚀从而降低电路的性能。加入Dummy Metal是为了增加金属的密度。</p>
-</li>
-<li><p>DRC和LVS。DRC是对芯片版图中的各层物理图形进行设计规则检查(spacing ,width),它也包括天线效应的检查,以确保芯片正常流片。LVS主要是将版图和电路网表进行比较,来保证流片出来的版图电路和实际需要的电路一致。DRC和LVS的检查–EDA工具Synopsy hercules/ mentor calibre/ CDN Dracula进行的.Astro also include LVS/DRC check commands.</p>
-</li>
-<li><p>Tape out。在所有检查和验证都正确无误的情况下把最后的版图GDSⅡ文件传递给Foundry厂进行掩膜制造    </p>
+<p>9.Dummy Metal的增加。Foundry厂都有对金属密度的规定,使其金属密度不要低于一定的值,以防在芯片制造过程中的刻蚀阶段对连线的金属层过度刻蚀从而降低电路的性能。加入Dummy Metal是为了增加金属的密度。</p>
+<p>10.DRC和LVS。DRC是对芯片版图中的各层物理图形进行设计规则检查(spacing ,width),它也包括天线效应的检查,以确保芯片正常流片。LVS主要是将版图和电路网表进行比较,来保证流片出来的版图电路和实际需要的电路一致。DRC和LVS的检查–EDA工具Synopsy hercules/ mentor calibre/ CDN Dracula进行的.Astro also include LVS/DRC check commands.</p>
+<p>11.Tape out。在所有检查和验证都正确无误的情况下把最后的版图GDSⅡ文件传递给Foundry厂进行掩膜制造    </p>
 <h3 id="94：从RTL-synthesis到tape-out之间的设计flow-并列出其中各步使用的tool"><a href="#94：从RTL-synthesis到tape-out之间的设计flow-并列出其中各步使用的tool" class="headerlink" title="94：从RTL synthesis到tape out之间的设计flow,并列出其中各步使用的tool."></a>94：从RTL synthesis到tape out之间的设计flow,并列出其中各步使用的tool.</h3><p>FLOW ：综合-布局布线-时序仿真-时序分析 TOOLS：略</p>
 <h3 id="95：是否接触过自动布局布线？请说出一两种工具软件。自动布局布线需要哪些基本元素？"><a href="#95：是否接触过自动布局布线？请说出一两种工具软件。自动布局布线需要哪些基本元素？" class="headerlink" title="95：是否接触过自动布局布线？请说出一两种工具软件。自动布局布线需要哪些基本元素？"></a>95：是否接触过自动布局布线？请说出一两种工具软件。自动布局布线需要哪些基本元素？</h3><p>自动布局布线其基本流程如下：</p>
-</li>
-</ol>
 <p>1、读入网表，跟foundry提供的标准单元库和Pad库以及宏模块库进行映射；<br>2、整体布局，规定了芯片的大致面积和管脚位置以及宏单元位置等粗略的信息；<br>3、读入时序约束文件，设置好timing setup菜单，为后面进行时序驱动的布局布线做准备；<br>4、详细布局，力求使后面布线能顺利满足布线布通率100%的要求和时序的要求；<br>5、时钟树综合，为了降低clock skew而产生由许多buffer单元组成的“时钟树”；<br>6、布线，先对电源线和时钟信号布线，然后对信号线布线，目标是最大程度地满足时序；<br>7、为满足design rule从而foundry能成功制造出该芯片而做的修补工作，如填充一些dummy等。<br>常用的工具有Synopsys的ASTRO，Cadence的SE，ISE，Quartus II也可实现布局布线。    </p>
 <h3 id="96：列举几种集成电路典型工艺。工艺上常提到0-25-0-18指的是什么？"><a href="#96：列举几种集成电路典型工艺。工艺上常提到0-25-0-18指的是什么？" class="headerlink" title="96：列举几种集成电路典型工艺。工艺上常提到0.25,0.18指的是什么？"></a>96：列举几种集成电路典型工艺。工艺上常提到0.25,0.18指的是什么？</h3><h3 id="97：请描述一下国内的工艺现状。"><a href="#97：请描述一下国内的工艺现状。" class="headerlink" title="97：请描述一下国内的工艺现状。"></a>97：请描述一下国内的工艺现状。</h3><h3 id="98：半导体工艺中，掺杂有哪几种方式？"><a href="#98：半导体工艺中，掺杂有哪几种方式？" class="headerlink" title="98：半导体工艺中，掺杂有哪几种方式？"></a>98：半导体工艺中，掺杂有哪几种方式？</h3><h3 id="99：描述CMOS电路中闩锁效应产生的过程及最后的结果？"><a href="#99：描述CMOS电路中闩锁效应产生的过程及最后的结果？" class="headerlink" title="99：描述CMOS电路中闩锁效应产生的过程及最后的结果？"></a>99：描述CMOS电路中闩锁效应产生的过程及最后的结果？</h3><p>闩锁效应是CMOS工艺所特有的寄生效应，严重会导致电路的失效，甚至烧毁芯片。闩锁效应是由NMOS的有源区、P衬底、N阱、PMOS的有源区构成的n-p-n-p结构产生的，当其中一个三极管正偏时，就会构成正反馈形成闩锁。避免闩锁的方法就是要减小衬底和N阱的寄生电阻，使寄生的三极管不会处于正偏状态。静电是一种看不见的破坏力，会对电子元器件产生影响。ESD 和相关的电压瞬变都会引起闩锁效应（latch-up）是半导体器件失效的主要原因之一。如果有一个强电场施加在器件结构中的氧化物薄膜上，则该氧化物薄膜就会因介质击穿而损坏。很细的金属化迹线会由于大电流而损坏，并会由于浪涌电流造成的过热而形成开路。这就是所谓的“闩锁效应”。在闩锁情况下，器件在电源与地之间形成短路，造成大电流、EOS（电过载）和器件损坏。</p>
 <h3 id="100：解释latch-up现象和Antenna-effect及其预防措施。"><a href="#100：解释latch-up现象和Antenna-effect及其预防措施。" class="headerlink" title="100：解释latch-up现象和Antenna effect及其预防措施。"></a>100：解释latch-up现象和Antenna effect及其预防措施。</h3><p>在芯片生产过程中，暴露的金属线或者多晶硅(polysilicon)等导体，就象是一根根天线，会收集电荷（如等离子刻蚀产生的带电粒子）导致电位升高。天线越长，收集的电荷也就越多，电压就越高。若这片导体碰巧只接了MOS 的栅，那么高电压就可能把薄栅氧化层击穿，使电路失效，这种现象我们称之为“天线效应”。随着工艺技术的发展，栅的尺寸越来越小，金属的层数越来越多，发生天线效应的可能性就越大</p>
