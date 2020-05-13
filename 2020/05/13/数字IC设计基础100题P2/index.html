@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  
-  <title>数字IC设计基础知识100题（Part II） | Mike Rush&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mike-rush.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="转载不必注明出处，就说是你自己写的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数字IC设计基础知识100题（Part II）">
@@ -18,75 +31,144 @@
 <meta property="article:modified_time" content="2020-05-13T03:57:47.636Z">
 <meta property="article:author" content="Mike Rush">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Mike Rush&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<link rel="canonical" href="https://mike-rush.github.io/2020/05/13/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P2/">
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Mike Rush&#39;s Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://Mike-Rush.github.io"></form>
-      </div>
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>数字IC设计基础知识100题（Part II） | Mike Rush's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-数字IC设计基础100题P2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/13/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P2/" class="article-date">
-  <time datetime="2020-05-13T03:46:14.000Z" itemprop="datePublished">2020-05-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      数字IC设计基础知识100题（Part II）
-    </h1>
-  
 
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mike Rush's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://mike-rush.github.io/2020/05/13/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mike Rush">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Rush's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数字IC设计基础知识100题（Part II）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-13 11:46:14 / Modified: 11:57:47" itemprop="dateCreated datePublished" datetime="2020-05-13T11:46:14+08:00">2020-05-13</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <p>转载不必注明出处，就说是你自己写的</p>
 <a id="more"></a>
@@ -200,121 +282,182 @@
 <h3 id="96：列举几种集成电路典型工艺。工艺上常提到0-25-0-18指的是什么？"><a href="#96：列举几种集成电路典型工艺。工艺上常提到0-25-0-18指的是什么？" class="headerlink" title="96：列举几种集成电路典型工艺。工艺上常提到0.25,0.18指的是什么？"></a>96：列举几种集成电路典型工艺。工艺上常提到0.25,0.18指的是什么？</h3><h3 id="97：请描述一下国内的工艺现状。"><a href="#97：请描述一下国内的工艺现状。" class="headerlink" title="97：请描述一下国内的工艺现状。"></a>97：请描述一下国内的工艺现状。</h3><h3 id="98：半导体工艺中，掺杂有哪几种方式？"><a href="#98：半导体工艺中，掺杂有哪几种方式？" class="headerlink" title="98：半导体工艺中，掺杂有哪几种方式？"></a>98：半导体工艺中，掺杂有哪几种方式？</h3><h3 id="99：描述CMOS电路中闩锁效应产生的过程及最后的结果？"><a href="#99：描述CMOS电路中闩锁效应产生的过程及最后的结果？" class="headerlink" title="99：描述CMOS电路中闩锁效应产生的过程及最后的结果？"></a>99：描述CMOS电路中闩锁效应产生的过程及最后的结果？</h3><p>闩锁效应是CMOS工艺所特有的寄生效应，严重会导致电路的失效，甚至烧毁芯片。闩锁效应是由NMOS的有源区、P衬底、N阱、PMOS的有源区构成的n-p-n-p结构产生的，当其中一个三极管正偏时，就会构成正反馈形成闩锁。避免闩锁的方法就是要减小衬底和N阱的寄生电阻，使寄生的三极管不会处于正偏状态。静电是一种看不见的破坏力，会对电子元器件产生影响。ESD 和相关的电压瞬变都会引起闩锁效应（latch-up）是半导体器件失效的主要原因之一。如果有一个强电场施加在器件结构中的氧化物薄膜上，则该氧化物薄膜就会因介质击穿而损坏。很细的金属化迹线会由于大电流而损坏，并会由于浪涌电流造成的过热而形成开路。这就是所谓的“闩锁效应”。在闩锁情况下，器件在电源与地之间形成短路，造成大电流、EOS（电过载）和器件损坏。</p>
 <h3 id="100：解释latch-up现象和Antenna-effect及其预防措施。"><a href="#100：解释latch-up现象和Antenna-effect及其预防措施。" class="headerlink" title="100：解释latch-up现象和Antenna effect及其预防措施。"></a>100：解释latch-up现象和Antenna effect及其预防措施。</h3><p>在芯片生产过程中，暴露的金属线或者多晶硅(polysilicon)等导体，就象是一根根天线，会收集电荷（如等离子刻蚀产生的带电粒子）导致电位升高。天线越长，收集的电荷也就越多，电压就越高。若这片导体碰巧只接了MOS 的栅，那么高电压就可能把薄栅氧化层击穿，使电路失效，这种现象我们称之为“天线效应”。随着工艺技术的发展，栅的尺寸越来越小，金属的层数越来越多，发生天线效应的可能性就越大</p>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://mike-rush.github.io/2020/05/13/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P2/" data-id="cka4sxnvj0000hor2ep8t1s6f" class="article-share-link">Share</a>
-      
-      
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/12/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P1/" rel="prev" title="数字IC设计基础知识100题（Part I）">
+      <i class="fa fa-chevron-left"></i> 数字IC设计基础知识100题（Part I）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#51：SRAM，FLASH-MEMORY，DRAM，SSRAM及SDRAM的区别"><span class="nav-number">1.</span> <span class="nav-text">51：SRAM，FLASH MEMORY，DRAM，SSRAM及SDRAM的区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#52：写出四种复用方式？"><span class="nav-number">2.</span> <span class="nav-text">52：写出四种复用方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#53：ASIC设计流程中什么时候修正Setup-time-violation-和Hold-time-violation-如何修正？解释setup和hold-time-violation，画图说明，并说明解决办法。"><span class="nav-number">3.</span> <span class="nav-text">53：ASIC设计流程中什么时候修正Setup time violation 和Hold time violation?如何修正？解释setup和hold time violation，画图说明，并说明解决办法。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#54：给出一个组合逻辑电路，要求分析逻辑功能。"><span class="nav-number">4.</span> <span class="nav-text">54：给出一个组合逻辑电路，要求分析逻辑功能。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#55：如何防止亚稳态？"><span class="nav-number">5.</span> <span class="nav-text">55：如何防止亚稳态？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#56：基尔霍夫定理的内容"><span class="nav-number">6.</span> <span class="nav-text">56：基尔霍夫定理的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#57：描述反馈电路的概念，列举他们的应用。"><span class="nav-number">7.</span> <span class="nav-text">57：描述反馈电路的概念，列举他们的应用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#58：有源滤波器和无源滤波器的区别"><span class="nav-number">8.</span> <span class="nav-text">58：有源滤波器和无源滤波器的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#59：给了reg的setup，hold时间，求中间组合逻辑的delay范围。"><span class="nav-number">9.</span> <span class="nav-text">59：给了reg的setup，hold时间，求中间组合逻辑的delay范围。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#60：时钟周期为T-触发器D1的寄存器到输出时间（触发器延时Tco）最大为T1max，最小为T1min。组合逻辑电路最大延迟为T2max-最小为T2min。问，触发器D2的建立时间T3和保持时间应满足什么条件。"><span class="nav-number">10.</span> <span class="nav-text">60：时钟周期为T,触发器D1的寄存器到输出时间（触发器延时Tco）最大为T1max，最小为T1min。组合逻辑电路最大延迟为T2max,最小为T2min。问，触发器D2的建立时间T3和保持时间应满足什么条件。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#61：给出某个一般时序电路的图，有Tsetup，Tdelay，Tck-gt-q（Tco），还有-clock的delay-写出决定最大时钟的因素，同时给出表达式。"><span class="nav-number">11.</span> <span class="nav-text">61：给出某个一般时序电路的图，有Tsetup，Tdelay，Tck-&gt;q（Tco），还有 clock的delay,写出决定最大时钟的因素，同时给出表达式。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#62：实现三分频电路，3-2分频电路等（偶数倍分频奇数倍分频）"><span class="nav-number">12.</span> <span class="nav-text">62：实现三分频电路，3&#x2F;2分频电路等（偶数倍分频奇数倍分频）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#63：名词解释"><span class="nav-number">13.</span> <span class="nav-text">63：名词解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#64：BJT，MOS特性曲线"><span class="nav-number">14.</span> <span class="nav-text">64：BJT，MOS特性曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#65：Please-show-the-CMOS-inverter-schematic-layout-and-its-cross-section-with-P-well-process-Plot-itstransfer-curve-Vout-Vin-and-also-explain-the-operation-region-of-PMOS-and-NMOS-for-each-segment-of-the-transfer-curve"><span class="nav-number">15.</span> <span class="nav-text">65：Please show the CMOS inverter schematic, layout and its cross section with P-well process. Plot itstransfer curve (Vout-Vin) and also explain the operation region of PMOS and NMOS for each segment of the transfer curve?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#66：To-design-a-CMOS-inverter-with-balance-rise-and-fall-time-please-define-the-ration-of-channel-width-of-PMOS-and-NMOS-and-explain"><span class="nav-number">16.</span> <span class="nav-text">66：To design a CMOS inverter with balance rise and fall time, please define the ration of channel width of PMOS and NMOS and explain?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#67：Please-draw-thetransistor-level-schematic-of-a-CMOS-2-input-AND-gate-and-explain-which-input-has-faster-response-for-output-rising-edge-less-delay-time-。"><span class="nav-number">17.</span> <span class="nav-text">67：Please draw thetransistor level schematic of a CMOS 2 input AND gate and explain which input has faster response for output rising edge.(less delay time)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#68：为了实现逻辑Y-A’B-AB’-CD，请选用以下逻辑中的一种，并说明为什么？1）INV-2）AND-3）OR-4）NAND-5）NOR-6）XOR"><span class="nav-number">18.</span> <span class="nav-text">68：为了实现逻辑Y&#x3D;A’B+AB’+CD，请选用以下逻辑中的一种，并说明为什么？1）INV 2）AND 3）OR 4）NAND 5）NOR 6）XOR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#69：用波形表示D触发器的功能。"><span class="nav-number">19.</span> <span class="nav-text">69：用波形表示D触发器的功能。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#70：用传输门和倒向器搭一个边沿触发器（DFF）"><span class="nav-number">20.</span> <span class="nav-text">70：用传输门和倒向器搭一个边沿触发器（DFF）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#71：用逻辑门画出D触发器。"><span class="nav-number">21.</span> <span class="nav-text">71：用逻辑门画出D触发器。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#72：画出DFF的结构图-用verilog实现之。"><span class="nav-number">22.</span> <span class="nav-text">72：画出DFF的结构图,用verilog实现之。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#73：画出一种CMOS的D锁存器的电路图和版图。"><span class="nav-number">23.</span> <span class="nav-text">73：画出一种CMOS的D锁存器的电路图和版图。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#74：用filp-flop和logic-gate设计一个1位加法器，输入carryin和current-stage，输出carryout和next-stage"><span class="nav-number">24.</span> <span class="nav-text">74：用filp-flop和logic-gate设计一个1位加法器，输入carryin和current-stage，输出carryout和next-stage.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#75：用D触发器做个4进制的计数。"><span class="nav-number">25.</span> <span class="nav-text">75：用D触发器做个4进制的计数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#76：实现N位Johnson-Counter-N-5。"><span class="nav-number">26.</span> <span class="nav-text">76：实现N位Johnson Counter, N&#x3D;5。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#78：数字电路设计当然必问Verilog-VHDL，如设计计数器。"><span class="nav-number">27.</span> <span class="nav-text">78：数字电路设计当然必问Verilog&#x2F;VHDL，如设计计数器。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#79：请用HDL描述四位的全加法器、5分频电路。"><span class="nav-number">28.</span> <span class="nav-text">79：请用HDL描述四位的全加法器、5分频电路。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#80：用VERILOG或VHDL写一段代码，实现10进制计数器。"><span class="nav-number">29.</span> <span class="nav-text">80：用VERILOG或VHDL写一段代码，实现10进制计数器。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#81：描述一个交通信号灯的设计。"><span class="nav-number">30.</span> <span class="nav-text">81：描述一个交通信号灯的设计。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#82：画状态机，接受1，2，5分钱的卖报机，每份报纸5分钱。"><span class="nav-number">31.</span> <span class="nav-text">82：画状态机，接受1，2，5分钱的卖报机，每份报纸5分钱。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#83：设计一个自动售货机系统，卖soda水的，只能投进三种硬币，要正确的找回钱数。"><span class="nav-number">32.</span> <span class="nav-text">83：设计一个自动售货机系统，卖soda水的，只能投进三种硬币，要正确的找回钱数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#84：设计一个自动饮料售卖机，饮料10分钱，硬币有5分和10分两种，并考虑找零：（1）画出fsm（有限状态机）；（2）用verilog编程，语法要符合fpga设计的要求；（3）设计工程中可使用的工具及设计大致过程。"><span class="nav-number">33.</span> <span class="nav-text">84：设计一个自动饮料售卖机，饮料10分钱，硬币有5分和10分两种，并考虑找零：（1）画出fsm（有限状态机）；（2）用verilog编程，语法要符合fpga设计的要求；（3）设计工程中可使用的工具及设计大致过程。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#85：画出可以检测10010串的状态图-并verilog实现之。"><span class="nav-number">34.</span> <span class="nav-text">85：画出可以检测10010串的状态图,并verilog实现之。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#86：用FSM实现101101的序列检测模块。"><span class="nav-number">35.</span> <span class="nav-text">86：用FSM实现101101的序列检测模块。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#87：给出单管DRAM的原理图"><span class="nav-number">36.</span> <span class="nav-text">87：给出单管DRAM的原理图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#88：什么叫做OTP片-OTP（一次性可编程）-、掩膜片，两者的区别何在？"><span class="nav-number">37.</span> <span class="nav-text">88：什么叫做OTP片(OTP（一次性可编程）)、掩膜片，两者的区别何在？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#89：你知道的集成电路设计的方式有哪几种？"><span class="nav-number">38.</span> <span class="nav-text">89：你知道的集成电路设计的方式有哪几种？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#90：描述你对集成电路设计流程的认识。"><span class="nav-number">39.</span> <span class="nav-text">90：描述你对集成电路设计流程的认识。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#91：描述你对集成电路工艺的认识。"><span class="nav-number">40.</span> <span class="nav-text">91：描述你对集成电路工艺的认识。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#92：简述FPGA等可编程逻辑器件设计流程。"><span class="nav-number">41.</span> <span class="nav-text">92：简述FPGA等可编程逻辑器件设计流程。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#93：分别写出IC设计前端到后端的流程和eda工具。"><span class="nav-number">42.</span> <span class="nav-text">93：分别写出IC设计前端到后端的流程和eda工具。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#94：从RTL-synthesis到tape-out之间的设计flow-并列出其中各步使用的tool"><span class="nav-number">43.</span> <span class="nav-text">94：从RTL synthesis到tape out之间的设计flow,并列出其中各步使用的tool.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#95：是否接触过自动布局布线？请说出一两种工具软件。自动布局布线需要哪些基本元素？"><span class="nav-number">44.</span> <span class="nav-text">95：是否接触过自动布局布线？请说出一两种工具软件。自动布局布线需要哪些基本元素？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#96：列举几种集成电路典型工艺。工艺上常提到0-25-0-18指的是什么？"><span class="nav-number">45.</span> <span class="nav-text">96：列举几种集成电路典型工艺。工艺上常提到0.25,0.18指的是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#97：请描述一下国内的工艺现状。"><span class="nav-number">46.</span> <span class="nav-text">97：请描述一下国内的工艺现状。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#98：半导体工艺中，掺杂有哪几种方式？"><span class="nav-number">47.</span> <span class="nav-text">98：半导体工艺中，掺杂有哪几种方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#99：描述CMOS电路中闩锁效应产生的过程及最后的结果？"><span class="nav-number">48.</span> <span class="nav-text">99：描述CMOS电路中闩锁效应产生的过程及最后的结果？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#100：解释latch-up现象和Antenna-effect及其预防措施。"><span class="nav-number">49.</span> <span class="nav-text">100：解释latch-up现象和Antenna effect及其预防措施。</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mike Rush</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike Rush</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2020/05/12/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">数字IC设计基础知识100题（Part I）</div>
-    </a>
-  
-</nav>
 
   
-</article>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+<script src="/js/utils.js"></script>
 
-  
-    
+<script src="/js/motion.js"></script>
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
-    </div>
-  </div>
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/05/13/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P2/">数字IC设计基础知识100题（Part II）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/12/%E6%95%B0%E5%AD%97IC%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80100%E9%A2%98P1/">数字IC设计基础知识100题（Part I）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/11/%E6%97%B6%E9%92%9F%E5%88%87%E6%8D%A2%E4%B8%AD%E7%9A%84glitch/">时钟切换中的glitch</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/11/PCB%E5%90%8D%E7%89%87%E9%A1%B9%E7%9B%AE%E2%80%94%E6%9E%84%E6%83%B3/">PCB名片项目—构想</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/11/MC-0-5um-PDK/">CSMC 0.5um PDK</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Mike Rush<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
   
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
 </html>
